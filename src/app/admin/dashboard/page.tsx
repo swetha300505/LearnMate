@@ -105,6 +105,25 @@ export default function AdminDashboardPage() {
     loadAdminData();
   };
 
+  const handleExportBackup = async () => {
+    const backupData = {
+      exportedAt: new Date().toISOString(),
+      students,
+      contentItems,
+      blueprints: await db.getAllBlueprints(),
+      generatedPapers: await db.getGeneratedPapers(),
+    };
+
+    const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `LearnMate_Backup_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const pendingApprovals = contentItems.filter((i) => i.approvalStatus === 'pending');
 
   return (
@@ -123,9 +142,14 @@ export default function AdminDashboardPage() {
           </p>
         </div>
 
-        <button onClick={handleLogout} className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <LogOut size={16} /> Sign Out
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button onClick={handleExportBackup} className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Award size={16} /> Export Data Backup (JSON)
+          </button>
+          <button onClick={handleLogout} className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <LogOut size={16} /> Sign Out
+          </button>
+        </div>
       </header>
 
       {/* Tabs */}
