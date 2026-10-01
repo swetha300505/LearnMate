@@ -55,5 +55,5 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [x] **Phase 2**: Grade 4 Module End-to-End (Subject/chapter navigation, single question quiz engine, celebratory confetti & explanations, attempt logging, student progress stats).
 - [x] **Phase 3**: Content Pipeline (Student uploads with pending status, admin review/approve/reject panel, grade/stream tag filtering, central repository vs my content).
 - [ ] **Phase 4**: Grade Modules Implementation (Grade 4 Playful, Grade 9 Explanatory, Grade 12 Board Exam).
-- [ ] **Phase 5**: Question Paper Generator & Progress Tracking.
+- [x] **Phase 4**: Question Paper Generator (Admin & student generation, CBSE blueprints, printable PDF paper view, answer key, interactive auto-graded test mode).
 - [ ] **Phase 6**: Final Polish, Security Audit & Vercel Deployment.
