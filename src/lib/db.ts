@@ -115,7 +115,8 @@ export const db = {
   // ----------------------------------------------------
   // SUBJECTS & CHAPTERS
   // ----------------------------------------------------
-  async getSubjects(grade: GradeLevel, stream?: GradeStream): Promise<Subject[]> {
+  async getSubjects(grade?: GradeLevel | null, stream?: GradeStream): Promise<Subject[]> {
+    if (!grade) return [];
     return localSubjects.filter((s) => {
       if (s.grade !== grade) return false;
       if (grade === 12 && stream) {
@@ -126,13 +127,15 @@ export const db = {
   },
 
   async getChapters(subjectId: string): Promise<Chapter[]> {
+    if (!subjectId) return [];
     return localChapters.filter((c) => c.subjectId === subjectId);
   },
 
   // ----------------------------------------------------
   // QUESTIONS & PRACTICE
   // ----------------------------------------------------
-  async getQuestions(grade: GradeLevel, stream?: GradeStream, subjectId?: string, chapterId?: string): Promise<Question[]> {
+  async getQuestions(grade?: GradeLevel | null, stream?: GradeStream, subjectId?: string, chapterId?: string): Promise<Question[]> {
+    if (!grade) return [];
     return localQuestions.filter((q) => {
       if (q.grade !== grade) return false;
       if (grade === 12 && stream && q.stream && q.stream !== stream) return false;
@@ -172,7 +175,8 @@ export const db = {
   // ----------------------------------------------------
   // CONTENT ITEMS & APPROVALS
   // ----------------------------------------------------
-  async getContentItems(grade: GradeLevel, stream?: GradeStream, studentId?: string): Promise<ContentItem[]> {
+  async getContentItems(grade?: GradeLevel | null, stream?: GradeStream, studentId?: string): Promise<ContentItem[]> {
+    if (!grade) return [];
     return localContentItems.filter((item) => {
       if (item.grade !== grade) return false;
       if (grade === 12 && stream && item.stream && item.stream !== stream) return false;
@@ -207,7 +211,8 @@ export const db = {
   // ----------------------------------------------------
   // BLUEPRINTS & GENERATED PAPERS
   // ----------------------------------------------------
-  async getBlueprints(grade: GradeLevel, stream?: GradeStream): Promise<Blueprint[]> {
+  async getBlueprints(grade?: GradeLevel | null, stream?: GradeStream): Promise<Blueprint[]> {
+    if (!grade) return [];
     return localBlueprints.filter((bp) => {
       if (bp.grade !== grade) return false;
       if (grade === 12 && stream && bp.stream && bp.stream !== stream) return false;
