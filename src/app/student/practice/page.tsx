@@ -60,12 +60,15 @@ function PracticeContent() {
 
       if (initialSubjectId) {
         const found = subjs.find((s) => s.id === initialSubjectId);
-        if (found) handleSelectSubject(found);
+        if (found) handleSelectSubject(found, userSession);
       }
     }
   };
 
-  const handleSelectSubject = async (subject: Subject) => {
+  const handleSelectSubject = async (subject: Subject, explicitSession?: UserSession) => {
+    const curSession = explicitSession || session || getStoredSession();
+    if (!curSession || !curSession.grade) return;
+
     setSelectedSubject(subject);
     setSelectedChapter(null);
     setQuizStarted(false);
@@ -73,16 +76,19 @@ function PracticeContent() {
     const chaps = await db.getChapters(subject.id);
     setChapters(chaps);
 
-    const qList = await db.getQuestions(session!.grade!, session!.stream, subject.id);
+    const qList = await db.getQuestions(curSession.grade, curSession.stream, subject.id);
     setQuestions(qList);
   };
 
   const handleSelectChapter = async (chapter: Chapter | null) => {
+    const curSession = session || getStoredSession();
+    if (!curSession || !curSession.grade || !selectedSubject) return;
+
     setSelectedChapter(chapter);
     const qList = await db.getQuestions(
-      session!.grade!,
-      session!.stream,
-      selectedSubject!.id,
+      curSession.grade,
+      curSession.stream,
+      selectedSubject.id,
       chapter ? chapter.id : undefined
     );
     setQuestions(qList);
