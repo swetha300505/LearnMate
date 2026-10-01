@@ -1,7 +1,5 @@
 import { Student, Subject, Chapter, Question, Blueprint, ContentItem, Admin } from './types';
 
-// Hashed version of default passwords/PINs (pre-calculated with bcrypt salt 10):
-// 'admin123' -> '$2a$10$wT8E7D1k2P5e3q9a8b7c6u.Y6Z7X8W9V0U1T2S3R4Q5P6O7N8M9L0' (we also compare in db fallback)
 export const INITIAL_ADMIN: Admin = {
   id: 'admin-001',
   email: 'parent@learnmate.local',
@@ -93,6 +91,7 @@ export const INITIAL_CHAPTERS: Chapter[] = [
 
   // Grade 12 Accountancy Chapters
   { id: 'chap-g12-a1', subjectId: 'subj-g12-acc', chapterNumber: 1, title: 'Accounting for Partnership Firms - Fundamentals', description: 'Profit & Loss Appropriation, Interest on Capital, Partner Drawings' },
+  { id: 'chap-g12-a2', subjectId: 'subj-g12-acc', chapterNumber: 2, title: 'Goodwill: Nature and Valuation', description: 'Average profit method, super profit method, and capitalization method' },
 ];
 
 export const INITIAL_QUESTIONS: Question[] = [
@@ -178,8 +177,40 @@ export const INITIAL_QUESTIONS: Question[] = [
     source: 'central_repo',
     createdAt: new Date().toISOString(),
   },
+  {
+    id: 'q-g9-s1',
+    subjectId: 'subj-g9-sci',
+    chapterId: 'chap-g9-s1',
+    grade: 9,
+    stream: null,
+    questionText: 'What is the process of conversion of liquid into vapour below its boiling point called?',
+    questionType: 'mcq',
+    options: ['Sublimation', 'Evaporation', 'Condensation', 'Fusion'],
+    correctAnswer: 'Evaporation',
+    explanation: 'Evaporation is a surface phenomenon where liquid turns into vapour at any temperature below its boiling point.',
+    difficulty: 'easy',
+    marks: 1,
+    source: 'central_repo',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'q-g9-s2',
+    subjectId: 'subj-g9-sci',
+    chapterId: 'chap-g9-s2',
+    grade: 9,
+    stream: null,
+    questionText: 'Which organelle is known as the powerhouse of the cell?',
+    questionType: 'mcq',
+    options: ['Lysosome', 'Mitochondria', 'Golgi Apparatus', 'Ribosome'],
+    correctAnswer: 'Mitochondria',
+    explanation: 'Mitochondria generate energy in the form of ATP molecules, hence termed the powerhouse of the cell.',
+    difficulty: 'easy',
+    marks: 1,
+    source: 'central_repo',
+    createdAt: new Date().toISOString(),
+  },
 
-  // Grade 12 Physics Questions
+  // Grade 12 Physics Questions (Science)
   {
     id: 'q-g12-p1',
     subjectId: 'subj-g12-phy',
@@ -205,9 +236,42 @@ export const INITIAL_QUESTIONS: Question[] = [
     questionText: "State Gauss's Law in electrostatics and write its mathematical formula for a closed surface.",
     questionType: 'short_answer',
     correctAnswer: 'Total electric flux through a closed surface equals 1/ε₀ times the total charge enclosed Q_enclosed.',
-    explanation: "Gauss's Law formula: ∮ E · dA = Q_enclosed / ε₀. It relates the net electric flux to net enclosed charge.",
+    explanation: "Gauss's Law formula: ∮ E · dA = Q_enclosed / ε₀. It relates net electric flux to net enclosed charge.",
     difficulty: 'hard',
     marks: 3,
+    source: 'central_repo',
+    createdAt: new Date().toISOString(),
+  },
+
+  // Grade 12 Accountancy Questions (Commerce)
+  {
+    id: 'q-g12-a1',
+    subjectId: 'subj-g12-acc',
+    chapterId: 'chap-g12-a1',
+    grade: 12,
+    stream: 'Commerce',
+    questionText: 'In the absence of a Partnership Deed, what is the rate of interest allowed on partner loan?',
+    questionType: 'mcq',
+    options: ['6% per annum', '10% per annum', '12% per annum', 'No interest allowed'],
+    correctAnswer: '6% per annum',
+    explanation: 'According to the Indian Partnership Act 1932, in the absence of an agreement, interest on partner loan is allowed at 6% p.a.',
+    difficulty: 'easy',
+    marks: 1,
+    source: 'central_repo',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'q-g12-a2',
+    subjectId: 'subj-g12-acc',
+    chapterId: 'chap-g12-a2',
+    grade: 12,
+    stream: 'Commerce',
+    questionText: 'What is Super Profit?',
+    questionType: 'short_answer',
+    correctAnswer: 'Super Profit is the excess of actual average profit over normal profit.',
+    explanation: 'Super Profit = Actual/Average Profit - Normal Profit (Capital Employed × Normal Rate of Return).',
+    difficulty: 'medium',
+    marks: 2,
     source: 'central_repo',
     createdAt: new Date().toISOString(),
   },
@@ -274,6 +338,26 @@ export const INITIAL_BLUEPRINTS: Blueprint[] = [
     createdByAdminId: 'admin-001',
     createdAt: new Date().toISOString(),
   },
+  {
+    id: 'bp-g12-a1',
+    title: 'Grade 12 Accountancy Board Practice Test',
+    grade: 12,
+    stream: 'Commerce',
+    subjectId: 'subj-g12-acc',
+    examType: 'term_1',
+    durationMinutes: 180,
+    totalMarks: 80,
+    questionStructure: {
+      mcqCount: 20,
+      shortCount: 10,
+      longCount: 6,
+      easyPercent: 30,
+      mediumPercent: 50,
+      hardPercent: 20,
+    },
+    createdByAdminId: 'admin-001',
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 export const INITIAL_CONTENT_ITEMS: ContentItem[] = [
@@ -299,7 +383,19 @@ export const INITIAL_CONTENT_ITEMS: ContentItem[] = [
     subjectId: 'subj-g12-phy',
     chapterId: 'chap-g12-p1',
     createdByStudentId: 'stud-g12-sci',
-    approvalStatus: 'pending', // Pending admin approval
+    approvalStatus: 'pending',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'cont-03',
+    title: 'Goodwill Valuation Formulas Quick Reference',
+    contentType: 'text_snippet',
+    textContent: 'Super Profit = Average Profit - Normal Profit. Goodwill = Super Profit × Number of Years Purchase.',
+    grade: 12,
+    stream: 'Commerce',
+    subjectId: 'subj-g12-acc',
+    chapterId: 'chap-g12-a2',
+    approvalStatus: 'approved',
     createdAt: new Date().toISOString(),
   },
 ];
