@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [x] **Project Initialization**: Next.js (TypeScript, App Router) initialized.
 - [x] **Git Repository Setup**: Remote `origin` linked to `https://github.com/swetha300505/LearnMate.git`, `.gitignore`, `.env.example`, and baseline commit created.
 - [x] **Phase 1**: Shared Shell (Supabase schema, RLS policies, bcrypt hashing, PIN tile login, admin dashboard, grade-customized student dashboard, security unit tests).
-- [ ] **Phase 2**: Admin Dashboard & Student Profile Management.
+- [x] **Phase 2**: Grade 4 Module End-to-End (Subject/chapter navigation, single question quiz engine, celebratory confetti & explanations, attempt logging, student progress stats).
 - [ ] **Phase 3**: Student PIN Authentication & Shared Shell Navigation.
 - [ ] **Phase 4**: Grade Modules Implementation (Grade 4 Playful, Grade 9 Explanatory, Grade 12 Board Exam).
 - [ ] **Phase 5**: Question Paper Generator & Progress Tracking.
