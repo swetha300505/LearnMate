@@ -34,7 +34,7 @@ export default function StudentProgressPage() {
   if (!session || !summary) return null;
 
   return (
-    <div className={`min-h-screen theme-grade-${session.grade}`} style={{ paddingBottom: '60px' }}>
+    <div className={`min-h-screen theme-grade-${session.grade}`} style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', paddingBottom: '60px' }}>
       <div className="container" style={{ maxWidth: '840px' }}>
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 0', marginBottom: '20px' }}>
           <button onClick={() => router.push('/student/dashboard')} className="btn btn-secondary" style={{ fontSize: '0.875rem' }}>

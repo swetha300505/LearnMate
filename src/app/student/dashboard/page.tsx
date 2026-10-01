@@ -50,7 +50,7 @@ export default function StudentDashboardPage() {
   const themeClass = `theme-grade-${session.grade}`;
 
   return (
-    <div className={`min-h-screen ${themeClass}`} style={{ paddingBottom: '60px' }}>
+    <div className={`min-h-screen ${themeClass}`} style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', paddingBottom: '60px' }}>
       <div className="container">
         {/* Navigation & Header */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '20px 0 32px 0', flexWrap: 'wrap', gap: '16px' }}>

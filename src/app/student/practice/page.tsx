@@ -147,7 +147,7 @@ function PracticeContent() {
   if (!session) return null;
 
   return (
-    <div className={`min-h-screen theme-grade-${session.grade}`} style={{ paddingBottom: '60px' }}>
+    <div className={`min-h-screen theme-grade-${session.grade}`} style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', paddingBottom: '60px' }}>
       <div className="container" style={{ maxWidth: '900px' }}>
         {/* Navigation Top Bar */}
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', marginBottom: '20px' }}>
